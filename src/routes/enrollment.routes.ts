@@ -1,18 +1,17 @@
+// src/routes/enrollment.routes.ts
 import { Router } from 'express';
-import {
-  getAllEnrollments,
-  getEnrollmentById,
-  createEnrollment,
-  updateEnrollment,
-  deleteEnrollment,
-} from '../controllers/enrollment.controller';
+import { PreEnrollmentController } from '../controllers/preEnrollment.controller';
+import { validateRequest } from '../middlewares/validateRequest';
+import { createPreEnrollmentSchema } from '../schemas/preEnrollmentSchema';
 
-const router = Router();
+const enrollmentRoutes = Router();
+const preEnrollmentController = new PreEnrollmentController();
 
-router.get('/', getAllEnrollments);
-router.get('/:id', getEnrollmentById);
-router.post('/', createEnrollment);
-router.put('/:id', updateEnrollment);
-router.delete('/:id', deleteEnrollment);
+// Rota para criar a pré-matrícula (primeiro passo do fluxo)
+enrollmentRoutes.post(
+  '/pre',
+  validateRequest(createPreEnrollmentSchema),
+  preEnrollmentController.create
+);
 
-export default router;
+export default enrollmentRoutes;

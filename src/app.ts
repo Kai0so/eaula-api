@@ -9,12 +9,12 @@ import studentRoutes from './routes/student.routes';
 import courseRoutes from './routes/course.routes';
 import categoryRoutes from './routes/category.routes';
 import courseInstanceRoutes from './routes/courseInstance.routes';
-import enrollmentRoutes from './routes/enrollment.routes';
 import paymentRoutes from './routes/payment.routes';
 import gradeRoutes from './routes/grade.routes';
 import materialRoutes from './routes/material.routes';
 import areaRoutes from './routes/area.routes';
 import courseSubjectRoutes from './routes/courseSubject.routes';
+import enrollmentRoutes from './routes/enrollment.routes';
 
 import { authenticateJWT } from './middlewares/authMiddleware';
 import { authorizeRoles } from './middlewares/roleMiddleware';
@@ -42,6 +42,7 @@ app.use('/grades', gradeRoutes);
 app.use('/materials', materialRoutes);
 app.use('/areas', areaRoutes); // supondo que áreas também sejam sensíveis
 app.use('/course-subjects', courseSubjectRoutes);
+app.use('/enrollments', enrollmentRoutes);
 
 // Testar conexão ao iniciar
 sequelize.authenticate()
